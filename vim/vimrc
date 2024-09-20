@@ -1,0 +1,34 @@
+" disable vi compat
+set nocompatible
+
+" syntax highlighting
+syntax on
+
+" filetype detection
+filetype on
+filetype plugin on
+filetype indent on
+
+" line numbers
+set number
+
+" highlight current line
+set cursorline
+
+" use spaces instead of tabs
+set shiftwidth=4
+set tabstop=4
+set expandtab
+
+" disable backup
+set nobackup
+
+" scroll settings
+set scrolloff=10
+set nowrap
+
+" display options
+set showmode
+set showmatch
+set hlsearch
+

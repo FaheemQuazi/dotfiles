@@ -1,0 +1,7 @@
+# colorful ls with fast shortcuts
+alias ls='ls --color=auto'
+alias ll='ls -al'
+alias l=ls
+
+# colorful grep
+alias grep='grep --color=auto'

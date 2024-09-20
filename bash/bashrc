@@ -1,0 +1,10 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# include bashrc files
+for f in ~/.bashrc.d/*; do source $f; done
+
