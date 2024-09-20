@@ -1,0 +1,7 @@
+# If nvim exists, use it instead of vim
+
+type nvim &>/dev/null
+STAT=$?
+if [ $STAT -eq 0 ]; then
+    alias vim=nvim
+fi
