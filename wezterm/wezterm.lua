@@ -21,21 +21,27 @@ config.mouse_bindings = {
 
 -- Statusbar
 wezterm.on('update-right-status', function(window, pane)
-    -- "Wed Mar 3 08:14"
+    -- Date/Time on Right
     local date = wezterm.strftime '%a %b %-d %H:%M '
-
-    local bat = ''
-    for _, b in ipairs(wezterm.battery_info()) do
-        bat = ' ' .. string.format('%.0f%%', b.state_of_charge * 100)
-    end
-
     window:set_right_status(wezterm.format {
         { Text = date },
     })
 
-    window:set_left_status(wezterm.format {
-        { Text = ' ' .. wezterm.hostname() .. ' [' .. bat .. ' ]' },
-    })
+    -- for desktop, only show hostname
+    if wezterm.hostname() == 'galactica' then
+        window:set_left_status(wezterm.format {
+            { Text = ' ' .. wezterm.hostname() },
+        })
+    else
+        local bat = ''
+        for _, b in ipairs(wezterm.battery_info()) do
+            bat = ' ' .. string.format('%.0f%%', b.state_of_charge * 100)
+        end
+        window:set_left_status(wezterm.format {
+            { Text = ' ' .. wezterm.hostname() .. ' [' .. bat .. ' ]' },
+        })
+    end
+
 end)
 
 -- Tab Bar
@@ -46,7 +52,18 @@ config.show_new_tab_button_in_tab_bar = false
 
 -- Colors
 config.color_scheme = 'Urple'
-config.font_size = 15.0
+config.font_size = 14.0
+config.colors = {
+    background = "0D0221",
+    foreground = "#CCCCCC",
+    selection_fg = "#000000",
+    selection_bg = "#F9C80E",
+    cursor_bg = "#2DE2E6",
+    cursor_fg = "#000000",
+    tab_bar = {
+        background = '#540D6E'
+    }
+}
 
 
 return config
