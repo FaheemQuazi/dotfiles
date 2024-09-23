@@ -65,5 +65,11 @@ config.colors = {
     }
 }
 
+-- Fonts
+config.font = wezterm.font_with_fallback {
+    'MesloLGS Nerd Font',
+    'FiraCode Nerd Font',
+    'Source Code Pro'
+}
 
 return config
