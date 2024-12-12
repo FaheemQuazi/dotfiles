@@ -7,11 +7,20 @@ endif
 
 " Plugin Directory
 call plug#begin()
+    Plug 'vim-airline/vim-airline' 
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'preservim/nerdtree'
     Plug 'ryanoasis/vim-devicons'
     Plug 'akinsho/toggleterm.nvim', {'tag': '*'}
     Plug 'lewis6991/gitsigns.nvim'
+    Plug 'rust-lang/rust.vim'
+    Plug 'dense-analysis/ale'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  
 call plug#end()
+
+" airline config
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'angr'
 
 " vim-devicons setup
 set encoding=UTF-8
@@ -27,12 +36,14 @@ set hidden
 
 " gitsigns setup
 lua << EOF
-    require('gitsigns').setup{ 
-        current_line_blame = true,
-        current_line_blame_opts = {
-            virt_text_pos = 'right_align',
-            delay = 500
-        }
-    }
+    require('gitsigns').setup()
 EOF
+
+" Ale Configuration
+let g:airline#extensions#ale#enabled = 1
+let g:ale_virtualtext_delay = 3
+set omnifunc=ale#completion#OmniFunc
+
+" Deoplete Configuration
+let g:deoplete#enable_at_startup = 1
 
