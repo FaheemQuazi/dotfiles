@@ -50,20 +50,24 @@ config.enable_tab_bar = true
 config.show_tabs_in_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
 
--- Colors
-config.color_scheme = 'Urple'
+-- General Appearance
 config.font_size = 14.0
-config.colors = {
-    background = "0D0221",
-    foreground = "#CCCCCC",
-    selection_fg = "#000000",
-    selection_bg = "#F9C80E",
-    cursor_bg = "#2DE2E6",
-    cursor_fg = "#000000",
-    tab_bar = {
-        background = '#540D6E'
+if wezterm.hostname() == 'galactica' then
+    config.color_scheme = 'Urple'
+    config.colors = {
+        background = "0D0221",
+        foreground = "#CCCCCC",
+        selection_fg = "#000000",
+        selection_bg = "#F9C80E",
+        cursor_bg = "#2DE2E6",
+        cursor_fg = "#000000",
+        tab_bar = {
+            background = '#540D6E'
+        }
     }
-}
+else 
+    config.color_scheme = 'Argonaut'
+end
 
 -- Fonts
 config.font = wezterm.font_with_fallback {
