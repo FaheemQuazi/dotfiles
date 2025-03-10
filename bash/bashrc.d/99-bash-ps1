@@ -48,13 +48,15 @@ function parse_git_dirty {
 
 function nonzero_return() {
 	RETVAL=$?
-	[ $RETVAL -ne 0 ] && echo -e "Exit Code: $RETVAL"
+	[ $RETVAL -ne 0 ] && echo -e "($RETVAL)"
 }
 function hostname_check() {
+	local ec=$?
 	if [ -n "$WSL_DISTRO_NAME" ]; then
 		echo "WSL-${WSL_DISTRO_NAME}"
 	else
 		echo "$(hostname)"
 	fi
+	return $ec
 }
-export PS1="\[\e[30;41m\]\`nonzero_return\`\[\e[m\]\n<\u@\`hostname_check\`> \w \n\`parse_git_branch\` \\$ "
+export PS1="<\u@\`hostname_check\`> \w \n\`parse_git_branch\` \[\e[30;41m\]\`nonzero_return\`\[\e[m\]\\$ "
