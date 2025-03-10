@@ -13,6 +13,7 @@ function parse_git_branch() {
 
 # get current status of git repo
 function parse_git_dirty {
+	local ec=$?
 	status=`git status 2>&1 | tee`
 	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
 	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
@@ -44,11 +45,13 @@ function parse_git_dirty {
 	else
 		echo ""
 	fi
+	return $ec
 }
 
 function nonzero_return() {
 	RETVAL=$?
 	[ $RETVAL -ne 0 ] && echo -e "($RETVAL)"
+	return $RETVAL
 }
 function hostname_check() {
 	local ec=$?
