@@ -12,7 +12,7 @@ call plug#begin()
     Plug 'preservim/nerdtree'
     Plug 'ryanoasis/vim-devicons'
     Plug 'akinsho/toggleterm.nvim', {'tag': '*'}
-    Plug 'lewis6991/gitsigns.nvim'
+"    Plug 'lewis6991/gitsigns.nvim'
     Plug 'rust-lang/rust.vim'
     Plug 'dense-analysis/ale'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  
@@ -35,9 +35,9 @@ EOF
 set hidden
 
 " gitsigns setup
-lua << EOF
-    require('gitsigns').setup()
-EOF
+"lua << EOF
+"    require('gitsigns').setup()
+"EOF
 
 " Ale Configuration
 let g:airline#extensions#ale#enabled = 1
