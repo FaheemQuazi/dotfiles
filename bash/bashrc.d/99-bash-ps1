@@ -52,9 +52,9 @@ function nonzero_return() {
 }
 function hostname_check() {
 	if [ -n "$WSL_DISTRO_NAME" ]; then
-			echo "WSL-${WSL_DISTRO_NAME}"
+		echo "WSL-${WSL_DISTRO_NAME}"
 	else
-			echo "$(hostname)"
+		echo "$(hostname)"
 	fi
 }
 export PS1="\[\e[30;41m\]\`nonzero_return\`\[\e[m\]\n<\u@\`hostname_check\`> \w \n\`parse_git_branch\` \\$ "
