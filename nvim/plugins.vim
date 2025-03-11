@@ -15,7 +15,9 @@ call plug#begin()
 "    Plug 'lewis6991/gitsigns.nvim'
     Plug 'rust-lang/rust.vim'
     Plug 'dense-analysis/ale'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'puremourning/vimspector'
+    Plug 'stevearc/overseer.nvim'
 call plug#end()
 
 " airline config
@@ -47,3 +49,12 @@ set omnifunc=ale#completion#OmniFunc
 " Deoplete Configuration
 let g:deoplete#enable_at_startup = 1
 
+" overseer Configuration
+lua << EOF
+    require('overseer').setup({
+        strategy = "toggleterm"
+    })
+EOF
+
+" vimspector configuration
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
