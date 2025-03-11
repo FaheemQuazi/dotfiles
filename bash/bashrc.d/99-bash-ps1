@@ -13,7 +13,6 @@ function parse_git_branch() {
 
 # get current status of git repo
 function parse_git_dirty {
-	local ec=$?
 	status=`git status 2>&1 | tee`
 	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
 	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
@@ -45,21 +44,24 @@ function parse_git_dirty {
 	else
 		echo ""
 	fi
-	return $ec
 }
 
-function nonzero_return() {
-	RETVAL=$?
-	[ $RETVAL -ne 0 ] && echo -e "($RETVAL)"
-	return $RETVAL
-}
 function hostname_check() {
-	local ec=$?
 	if [ -n "$WSL_DISTRO_NAME" ]; then
 		echo "WSL-${WSL_DISTRO_NAME}"
 	else
 		echo "$(hostname)"
 	fi
-	return $ec
 }
-export PS1="<\u@\`hostname_check\`> \w \n\`parse_git_branch\` \[\e[30;41m\]\`nonzero_return\`\[\e[m\]\\$ "
+
+__prompt_command() {
+    local ec="$?"
+
+    PS1="<\u@\`hostname_check\`> \w \n\`parse_git_branch\`"
+    if [ $ec != 0 ]; then
+        PS1+=" \[\e[30;41m\]($ec)\[\e[m\]"
+    fi
+    PS1+=" \\$ "
+}
+PROMPT_COMMAND=__prompt_command
+
