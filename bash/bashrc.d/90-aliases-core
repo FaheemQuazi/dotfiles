@@ -5,3 +5,6 @@ alias l=ls
 
 # colorful grep
 alias grep='grep --color=auto'
+
+# Up one typo
+alias cd..="cd .."
